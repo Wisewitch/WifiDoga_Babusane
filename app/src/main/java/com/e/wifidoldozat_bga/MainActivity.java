@@ -1,15 +1,9 @@
 package com.e.wifidoldozat_bga;
 
-import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
-import androidx.annotation.RequiresApi;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Context;
 import android.content.Intent;
 import android.media.MediaPlayer;
 import android.net.ConnectivityManager;
-import android.net.Network;
 import android.net.NetworkInfo;
 import android.net.wifi.WifiInfo;
 import android.net.wifi.WifiManager;
@@ -20,9 +14,12 @@ import android.text.format.Formatter;
 import android.view.MenuItem;
 import android.widget.TextView;
 
-import com.google.android.material.bottomnavigation.BottomNavigationView;
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.annotation.RequiresApi;
+import androidx.appcompat.app.AppCompatActivity;
 
-import org.w3c.dom.Text;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
     TextView textView_WIFI;
@@ -50,9 +47,9 @@ public class MainActivity extends AppCompatActivity {
                             return true;
                         }
                         wifiManager.setWifiEnabled(true);
-                        textView_WIFI.setText("Wifi bekapcsolva");
                         ProcessBuilder mediaplayer;
                         mediaPlayer_on.start();
+                        textView_WIFI.setText("Wifi bekapcsolva");
                         break;
                     case R.id.WIFIoff:
                         if(Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
@@ -62,8 +59,9 @@ public class MainActivity extends AppCompatActivity {
                             return true;
                         }
                         wifiManager.setWifiEnabled(false);
-                        textView_WIFI.setText("Wifi kikapcsolva");
                         mediaPlayer_off.start();
+                        textView_WIFI.setText("Wifi kikapcsolva");
+
                         break;
                     case R.id.WIFIInfo:
                         ConnectivityManager connManager =
@@ -98,11 +96,14 @@ public class MainActivity extends AppCompatActivity {
              )
              {
                  textView_WIFI.setText("Wifi bekapcsolva");
+                 ProcessBuilder mediaplayer;
+                 mediaPlayer_on.start();
             }
              else if(wifiManager.getWifiState() == WifiManager.WIFI_STATE_DISABLING ||
                      wifiManager.getWifiState() == WifiManager.WIFI_STATE_DISABLED
              ){
                  textView_WIFI.setText("Wifi kikapcsolva");
+                 mediaPlayer_off.start();
              }
         }
 
